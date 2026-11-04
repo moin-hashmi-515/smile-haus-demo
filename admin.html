@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smile Haus Dentistry — DEMO CMS</title>
+<style>body{margin:0;font-family:system-ui,Arial,sans-serif;color:#222;background:#f2f7f8;line-height:1.55}.wrap{max-width:900px;margin:0 auto;padding:20px}.demo{background:#b3261e;color:#fff;text-align:center;padding:10px;font-weight:700}table{width:100%;border-collapse:collapse;background:#fff}th,td{border:1px solid #ddd;padding:10px;text-align:left;vertical-align:top}button{cursor:pointer;padding:8px 14px;border:0;border-radius:8px;background:#111;color:#fff;margin-right:6px}.note{color:#5a5a5a;font-size:14px}a{color:#111}</style>
+</head>
+<body>
+<div class="demo">DEMO CMS — SAMPLE ONLY, NO REAL LOGIN</div>
+<div class="wrap">
+<h1>Smile Haus Dentistry — Demo Bookings</h1>
+<p class="note">Demo only: bookings are stored in this browser's local storage only (key smilehaus_demo_v1). There is no server, no real login, and no notifications. Mark contacted / Close are UI-only in this demo. A production CMS would be built on WordPress/backend. <a href="index.html">Back to demo site</a></p>
+<table><thead><tr><th>Name</th><th>Contact</th><th>Service / Doctor</th><th>Message</th><th>Status</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table>
+<p id="empty" class="note">No demo bookings yet. Submit the booking form on the demo site to see one here.</p>
+<script>
+var k='smilehaus_demo_v1';function render(){var arr=[];try{arr=JSON.parse(localStorage.getItem(k)||'[]')}catch(e){}var tb=document.getElementById('rows');tb.innerHTML='';document.getElementById('empty').style.display=arr.length?'none':'block';arr.forEach(function(d,i){var tr=document.createElement('tr');tr.innerHTML='<td>'+d.name+'</td><td>'+d.email+'<br>'+(d.phone||'')+'</td><td>'+d.service+'<br>'+(d.doctor||'')+'<br>'+(d.date||'')+'</td><td>'+d.msg+'</td><td>'+(d.status||'New')+'</td><td></td>';var b1=document.createElement('button');b1.textContent='Mark contacted';b1.onclick=function(){d.status='Contacted';localStorage.setItem(k,JSON.stringify(arr));render()};var b2=document.createElement('button');b2.textContent='Close';b2.onclick=function(){d.status='Closed';localStorage.setItem(k,JSON.stringify(arr));render()};tr.lastChild.appendChild(b1);tr.lastChild.appendChild(b2);tb.appendChild(tr)})}render();
+</script>
+</div>
+</body>
+</html>
